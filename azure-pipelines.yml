@@ -18,7 +18,7 @@ steps:
     azureSubscription: 'Vignesh-ServiceConnection'
     azureContainerRegistry: '{"loginServer":"vigneshwardevops.azurecr.io", "name" : "/subscriptions/23d9e783-b881-49e7-b2f1-a1a6f1bc2d90/resourceGroups/Vigneshwar-RG/providers/Microsoft.ContainerRegistry/registries/VigneshwarDevops"}'
     dockerFile: app/Dockerfile
-
+    imageName: Vigneshwar:$(major).$(minor)$(Rev:.r)
 
 - task: Docker@0
   displayName: 'Push an image'
@@ -26,8 +26,8 @@ steps:
     azureSubscription: 'Vignesh-ServiceConnection'
     azureContainerRegistry: '{"loginServer":"vigneshwardevops.azurecr.io", "name" : "/subscriptions/23d9e783-b881-49e7-b2f1-a1a6f1bc2d90/resourceGroups/Vigneshwar-RG/providers/Microsoft.ContainerRegistry/registries/VigneshwarDevops"}'
     action: 'Push an image'
+    imageName: Vigneshwar:$(major).$(minor)$(Rev:.r)
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
+
 
 
