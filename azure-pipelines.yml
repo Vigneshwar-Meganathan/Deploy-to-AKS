@@ -3,14 +3,22 @@ trigger:
 
 pool:
   vmImage: 'windows-latest'
-  
+
+variables:
+   major: 1
+   minor: 1
+
+name: $(major).$(minor)$(Rev:.r)
+
 steps:
 - task: Docker@0
   displayName: 'Build an image'
+  
   inputs:
     azureSubscription: 'Vignesh-ServiceConnection'
     azureContainerRegistry: '{"loginServer":"vigneshwardevops.azurecr.io", "id" : "/subscriptions/23d9e783-b881-49e7-b2f1-a1a6f1bc2d90/resourceGroups/Vigneshwar-RG/providers/Microsoft.ContainerRegistry/registries/VigneshwarDevops"}'
     dockerFile: app/Dockerfile
+    imageName: '$(major).$(minor)$(Rev:.r)'
 
 - task: Docker@0
   displayName: 'Push an image'
